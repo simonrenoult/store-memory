@@ -24,7 +24,7 @@ describe("store", () => {
         const store = [];
         memory(store).add({ id: 1, name: "mug" });
         expect(store[0].id).not.toEqual(1);
-      })
+      });
 
       test("returns the item id", () => {
         const store = [];
