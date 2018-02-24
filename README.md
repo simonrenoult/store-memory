@@ -11,3 +11,22 @@
 <a href="https://travis-ci.org/simonrenoult/store-memory">
   <img alt="Travis" src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square">
 </a>
+
+## Install
+
+```
+$ npm install store-memory
+```
+
+## Usage
+
+```js
+const store = require('store-memory')([]);
+
+store.add({id: 1, name: "Tom"});
+const items = store.findAll();
+```
+
+## License
+
+MIT
