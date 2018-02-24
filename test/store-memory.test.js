@@ -16,19 +16,19 @@ describe("store", () => {
     describe("when data is provided", () => {
       test("adds the data to the store", () => {
         const store = [];
-        memory(store).add({ id: 1, name: "mug" });
+        memory(store).add({ name: "mug" });
         expect(store.length).toBe(1);
       });
 
       test("it overrides the provided id", () => {
         const store = [];
-        memory(store).add({ id: 1, name: "mug" });
+        memory(store).add({ name: "mug" });
         expect(store[0].id).not.toEqual(1);
       });
 
       test("returns the item id", () => {
         const store = [];
-        const id = memory(store).add({ id: 1, name: "mug" });
+        const id = memory(store).add({ name: "mug" });
         expect(id).toBeDefined();
       });
     });
@@ -36,7 +36,7 @@ describe("store", () => {
 
   describe("findAll", () => {
     test("returns all the items", () => {
-      const store = [{ id: 1, name: "mug" }, { id: 2, name: "ball" }];
+      const store = [{ name: "mug" }, { name: "ball" }];
       const items = memory(store).findAll();
       expect(items.length).toBe(2);
     });
@@ -44,7 +44,7 @@ describe("store", () => {
 
   describe("count", () => {
     test("returns the number of items", () => {
-      const store = [{ id: 1, name: "mug" }, { id: 2, name: "ball" }];
+      const store = [{ name: "mug" }, { name: "ball" }];
       const items = memory(store).count();
       expect(items).toBe(2);
     });
@@ -53,14 +53,14 @@ describe("store", () => {
   describe("find", () => {
     describe("when id is missing", () => {
       test("throws an error", () => {
-        const store = [{ id: 1, name: "mug" }, { id: 2, name: "ball" }];
+        const store = [{ name: "mug" }, { name: "ball" }];
         expect(memory(store).find).toThrow(ReferenceError);
       });
     });
 
     describe("when id does not exist", () => {
       test("throws an error", () => {
-        const store = [{ id: 1, name: "mug" }, { id: 2, name: "ball" }];
+        const store = [{ name: "mug" }, { name: "ball" }];
         expect(() => memory(store).find(3)).toThrow(memory.NotFoundError);
       });
     });
@@ -76,7 +76,7 @@ describe("store", () => {
 
   describe("removeAll", () => {
     test("removes all the items", () => {
-      const store = [{ id: 1, name: "mug" }, { id: 2, name: "ball" }];
+      const store = [{ name: "mug" }, { name: "ball" }];
       memory(store).removeAll();
       expect(store.length).toBe(0);
     });
@@ -85,14 +85,14 @@ describe("store", () => {
   describe("remove", () => {
     describe("when id is missing", () => {
       test("throws an error", () => {
-        const store = [{ id: 1, name: "mug" }, { id: 2, name: "ball" }];
+        const store = [{ name: "mug" }, { name: "ball" }];
         expect(memory(store).remove).toThrow(memory.NotFoundError);
       });
     });
 
     describe("when id does not exist", () => {
       test("throws an error", () => {
-        const store = [{ id: 1, name: "mug" }, { id: 2, name: "ball" }];
+        const store = [{ name: "mug" }, { name: "ball" }];
         expect(() => memory(store).remove(3)).toThrow(memory.NotFoundError);
       });
     });
@@ -109,7 +109,7 @@ describe("store", () => {
   describe("update", () => {
     describe("when id is missing", () => {
       test("throws an error", () => {
-        const store = [{ id: 1, name: "mug" }, { id: 2, name: "ball" }];
+        const store = [{ name: "mug" }, { name: "ball" }];
         expect(() => {
           memory(store).update(undefined, {});
         }).toThrow(memory.NotFoundError);
@@ -118,7 +118,7 @@ describe("store", () => {
 
     describe("when data is missing", () => {
       test("throws an error", () => {
-        const store = [{ id: 1, name: "mug" }, { id: 2, name: "ball" }];
+        const store = [{ name: "mug" }, { name: "ball" }];
         expect(() => {
           memory(store).update(1, undefined);
         }).toThrow(memory.NotFoundError);
@@ -127,7 +127,7 @@ describe("store", () => {
 
     describe("when id does not exist", () => {
       test("throws an error", () => {
-        const store = [{ id: 1, name: "mug" }, { id: 2, name: "ball" }];
+        const store = [{ name: "mug" }, { name: "ball" }];
         expect(() => {
           memory(store).update(3, { name: "tshirt" });
         }).toThrow(memory.NotFoundError);

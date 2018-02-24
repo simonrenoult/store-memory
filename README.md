@@ -27,23 +27,23 @@ const memoryStore = require('store-memory')
 const productStore = memoryStore(store);
 
 // Add a new product to the store.
-const product = {id: 1, name: "mug"}
-productStore.add(product);
+const product = {name: "mug"}
+const id = productStore.add(product);
 
 // Find all products in the store.
 const products = productStore.findAll();
 
 // Find a product by id.
-const product = productStore.find(1);
+const product = productStore.find(id);
 
 // Remove all products.
 productStore.removeAll();
 
 // Remove a product by id.
-productStore.remove(1);
+productStore.remove(id);
 
 // Update a product.
-productStore.update(1, {name: "tshirt"});
+productStore.update(id, {name: "tshirt"});
 
 // Count the products.
 productStore.count();
