@@ -78,12 +78,20 @@ describe("store", () => {
       });
     });
 
-    describe("when id is provided", () => {
-      test("updates the item", () => {
+    describe("when data is missing", () => {
+      test("throws an error", () => {
         const store = [{ id: 1, name: "mug" }, { id: 2, name: "ball" }];
         expect(() => {
           memory(store).update(1, undefined);
         }).toThrow("data must be provided");
+      });
+    });
+
+    describe("when id and data are provided", () => {
+      test("updates the item", () => {
+        const store = [{ id: 1, name: "mug" }, { id: 2, name: "ball" }];
+        memory(store).update(1, { name: "tshirt" });
+        expect(store.find(e => e.id === 1)).toEqual({ id: 1, name: "tshirt" });
       });
     });
   });

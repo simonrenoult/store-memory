@@ -7,7 +7,7 @@
     "lint": "eslint .",
     "pretest": "npm run lint",
     "test": "jest test/*.test.js",
-    "coveralls": "nyc report --reporter=text-lcov | coveralls"
+    "coverage": "jest && codecov"
   },
   "repository": "simonrenoult/store-memory",
   "keywords": [
@@ -21,12 +21,16 @@
   },
   "homepage": "https://github.com/simonrenoult/store-memory#readme",
   "devDependencies": {
+    "codecov": "^3.0.0",
     "coveralls": "^3.0.0",
     "eslint": "^4.18.1",
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-prettier": "^2.6.0",
     "jest": "^22.4.2",
-    "nyc": "^11.4.1",
     "prettier": "^1.10.2"
+  },
+  "jest": {
+    "coverageDirectory": "./coverage/",
+    "collectCoverage": true
   }
 }
