@@ -1,0 +1,32 @@
+{
+  "name": "store-memory",
+  "version": "0.0.1",
+  "description": "Simplified memory store",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "jest test/*.test.js",
+    "coveralls": "nyc report --reporter=text-lcov | coveralls"
+  },
+  "repository": "simonrenoult/store-memory",
+  "keywords": [
+    "store",
+    "memory"
+  ],
+  "author": "Simon RENOULT <simon.renoult@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/simonrenoult/store-memory/issues"
+  },
+  "homepage": "https://github.com/simonrenoult/store-memory#readme",
+  "devDependencies": {
+    "coveralls": "^3.0.0",
+    "eslint": "^4.18.1",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-prettier": "^2.6.0",
+    "jest": "^22.4.2",
+    "nyc": "^11.4.1",
+    "prettier": "^1.10.2"
+  }
+}
