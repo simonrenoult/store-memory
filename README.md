@@ -51,7 +51,7 @@ try {
   productStore.remove(42);
   productStore.update(42, {});
 } catch(e) {
-  if (e instance memoryStore.NotFoundError) {
+  if (e instanceof memoryStore.NotFoundError) {
     // Do something.
   }
 }
@@ -62,7 +62,7 @@ try {
   productStore.remove(null);
   productStore.update(null);
 } catch(e) {
-  if (e instance ReferenceError) {
+  if (e instanceof ReferenceError) {
     // Do something.
   }
 }
@@ -72,7 +72,7 @@ try {
   productStore.add(null);
   productStore.update(1, null);
 } catch(e) {
-  if (e instance ReferenceError) {
+  if (e instanceof ReferenceError) {
     // Do something.
   }
 }
