@@ -45,6 +45,9 @@ productStore.remove(1);
 // Update a product.
 productStore.update(1, {name: "tshirt"});
 
+// Count the products.
+productStore.count();
+
 // Handle a product that does not exist.
 try {
   productStore.find(42);

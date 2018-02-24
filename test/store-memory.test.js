@@ -42,6 +42,14 @@ describe("store", () => {
     });
   });
 
+  describe("count", () => {
+    test("returns the number of items", () => {
+      const store = [{ id: 1, name: "mug" }, { id: 2, name: "ball" }];
+      const items = memory(store).count();
+      expect(items).toBe(2);
+    });
+  });
+
   describe("find", () => {
     describe("when id is missing", () => {
       test("throws an error", () => {

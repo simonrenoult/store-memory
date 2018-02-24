@@ -18,6 +18,10 @@ module.exports = store => {
       return store;
     },
 
+    count() {
+      return store.length;
+    },
+
     find(id) {
       if (!id) throw new ReferenceError("id must be provided");
       const item = store.find(item => item.id === id);
