@@ -2,37 +2,52 @@ const memory = require("..");
 
 describe("store", () => {
   test("throws an error when store is not an array", () => {
-    expect(() => memory({})).toThrow("store must be an array");
+    expect(() => memory({})).toThrow(ReferenceError);
   });
 
   describe("add", () => {
     describe("when data is missing", () => {
       test("throws an error", () => {
         const store = [];
-        expect(memory(store).add).toThrow("data must be provided");
+        expect(memory(store).add).toThrow(ReferenceError);
       });
     });
 
     describe("when data is provided", () => {
       test("adds the data to the store", () => {
         const store = [];
-        memory(store).add("hello world");
-        expect(store).toContain("hello world");
+        memory(store).add({ id: 1, name: "mug" });
+        expect(store.length).toBe(1);
+      });
+
+      test("returns the item id", () => {
+        const store = [];
+        const id = memory(store).add("hello world");
+        expect(id).toBeDefined();
       });
     });
   });
 
-  test("findAll", () => {
-    const store = ["value1", "value2"];
-    const items = memory(store).findAll();
-    expect(items.length).toBe(2);
+  describe("findAll", () => {
+    test("returns all the items", () => {
+      const store = ["value1", "value2"];
+      const items = memory(store).findAll();
+      expect(items.length).toBe(2);
+    });
   });
 
   describe("find", () => {
     describe("when id is missing", () => {
       test("throws an error", () => {
         const store = [{ id: 1, name: "mug" }, { id: 2, name: "ball" }];
-        expect(memory(store).find).toThrow("id must be provided");
+        expect(memory(store).find).toThrow(ReferenceError);
+      });
+    });
+
+    describe("when id does not exist", () => {
+      test("throws an error", () => {
+        const store = [{ id: 1, name: "mug" }, { id: 2, name: "ball" }];
+        expect(() => memory(store).find(3)).toThrow(memory.NotFoundError);
       });
     });
 
@@ -45,17 +60,26 @@ describe("store", () => {
     });
   });
 
-  test("removeAll", () => {
-    const store = ["value1", "value2"];
-    memory(store).removeAll();
-    expect(store.length).toBe(0);
+  describe("removeAll", () => {
+    test("removes all the items", () => {
+      const store = ["value1", "value2"];
+      memory(store).removeAll();
+      expect(store.length).toBe(0);
+    });
   });
 
   describe("remove", () => {
     describe("when id is missing", () => {
       test("throws an error", () => {
         const store = [{ id: 1, name: "mug" }, { id: 2, name: "ball" }];
-        expect(memory(store).remove).toThrow("id must be provided");
+        expect(memory(store).remove).toThrow(memory.NotFoundError);
+      });
+    });
+
+    describe("when id does not exist", () => {
+      test("throws an error", () => {
+        const store = [{ id: 1, name: "mug" }, { id: 2, name: "ball" }];
+        expect(() => memory(store).remove(3)).toThrow(memory.NotFoundError);
       });
     });
 
@@ -74,7 +98,7 @@ describe("store", () => {
         const store = [{ id: 1, name: "mug" }, { id: 2, name: "ball" }];
         expect(() => {
           memory(store).update(undefined, {});
-        }).toThrow("id must be provided");
+        }).toThrow(memory.NotFoundError);
       });
     });
 
@@ -83,7 +107,16 @@ describe("store", () => {
         const store = [{ id: 1, name: "mug" }, { id: 2, name: "ball" }];
         expect(() => {
           memory(store).update(1, undefined);
-        }).toThrow("data must be provided");
+        }).toThrow(memory.NotFoundError);
+      });
+    });
+
+    describe("when id does not exist", () => {
+      test("throws an error", () => {
+        const store = [{ id: 1, name: "mug" }, { id: 2, name: "ball" }];
+        expect(() => {
+          memory(store).update(3, { name: "tshirt" });
+        }).toThrow(memory.NotFoundError);
       });
     });
 
