@@ -23,7 +23,8 @@ $ npm install store-memory
 ```js
 // Create a new store.
 const store = []
-const productStore = require('store-memory')(store);
+const memoryStore = require('store-memory')
+const productStore = memoryStore(store);
 
 // Add a new product to the store.
 const product = {id: 1, name: "mug"}
@@ -44,6 +45,37 @@ productStore.remove(1);
 // Update a product.
 productStore.update(1, {name: "tshirt"});
 
+// Handle a product that does not exist.
+try {
+  productStore.find(42);
+  productStore.remove(42);
+  productStore.update(42, {});
+} catch(e) {
+  if (e instance memoryStore.NotFoundError) {
+    // Do something.
+  }
+}
+
+// Handle an invalid id.
+try {
+  productStore.find(null);
+  productStore.remove(null);
+  productStore.update(null);
+} catch(e) {
+  if (e instance ReferenceError) {
+    // Do something.
+  }
+}
+
+// Handle invalid data.
+try {
+  productStore.add(null);
+  productStore.update(1, null);
+} catch(e) {
+  if (e instance ReferenceError) {
+    // Do something.
+  }
+}
 ```
 
 ## License
