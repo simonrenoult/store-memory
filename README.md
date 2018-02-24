@@ -21,10 +21,29 @@ $ npm install store-memory
 ## Usage
 
 ```js
-const store = require('store-memory')([]);
+// Create a new store.
+const store = []
+const productStore = require('store-memory')(store);
 
-store.add({id: 1, name: "Tom"});
-const items = store.findAll();
+// Add a new product to the store.
+const product = {id: 1, name: "mug"}
+productStore.add(product);
+
+// Find all products in the store.
+const products = productStore.findAll();
+
+// Find a product by id.
+const product = productStore.find(1);
+
+// Remove all products.
+productStore.removeAll();
+
+// Remove a product by id.
+productStore.remove(1);
+
+// Update a product.
+productStore.update(1, {name: "tshirt"});
+
 ```
 
 ## License
