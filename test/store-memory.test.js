@@ -20,6 +20,12 @@ describe("store", () => {
         expect(store.length).toBe(1);
       });
 
+      test("it overrides the provided id", () => {
+        const store = [];
+        memory(store).add({ id: 1, name: "mug" });
+        expect(store[0].id).not.toEqual(1);
+      })
+
       test("returns the item id", () => {
         const store = [];
         const id = memory(store).add("hello world");

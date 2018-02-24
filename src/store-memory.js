@@ -10,8 +10,7 @@ module.exports = store => {
     add(data) {
       if (!data) throw new ReferenceError("data must be provided");
       const id = shortid.generate();
-      const item = Object.assign({}, data);
-      store.push(item);
+      store.push(Object.assign({}, data, { id }));
       return id;
     },
 
