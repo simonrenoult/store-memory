@@ -28,7 +28,7 @@ describe("store", () => {
 
       test("returns the item id", () => {
         const store = [];
-        const id = memory(store).add("hello world");
+        const id = memory(store).add({ id: 1, name: "mug" });
         expect(id).toBeDefined();
       });
     });
@@ -36,7 +36,7 @@ describe("store", () => {
 
   describe("findAll", () => {
     test("returns all the items", () => {
-      const store = ["value1", "value2"];
+      const store = [{ id: 1, name: "mug" }, { id: 2, name: "ball" }];
       const items = memory(store).findAll();
       expect(items.length).toBe(2);
     });
@@ -68,7 +68,7 @@ describe("store", () => {
 
   describe("removeAll", () => {
     test("removes all the items", () => {
-      const store = ["value1", "value2"];
+      const store = [{ id: 1, name: "mug" }, { id: 2, name: "ball" }];
       memory(store).removeAll();
       expect(store.length).toBe(0);
     });
